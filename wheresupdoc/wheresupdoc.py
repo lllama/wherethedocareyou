@@ -15,6 +15,10 @@ def coordinates():
 def home():
     return ""
 
+@app.route("/map")
+def map():
+    return flask.render_template("map.html")
+
 if __name__ == "__main__":
     PORT = os.getenv('PORT', 5000)
     app.debug = True
