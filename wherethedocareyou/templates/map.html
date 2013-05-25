@@ -1,13 +1,19 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<button onclick=
-    "show_image('http://google.com/images/logo.gif', 
-                 276, 
-                 110, 
-                 'Google Logo');">Add Google Logo</button> 
 
+
+<div id="wrapper">
+<img src='{{ url_for('static', filename='ulu2011_3.png') }}'></img>
+    <div id="canvas">
+            
+    </div>
+</div>
+
+
+<!-- <button onclick="init();"></button> -->
 <script src='http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js'></script>
+<script src='http://code.jquery.com/jquery-1.10.0.min.js'></script>
 <script src='{{ url_for('static', filename='map.js') }}'></script>
 
 {% endblock %}
