@@ -1,1 +1,1 @@
-web: python wheresupdoc/wheresupdoc.py
+web: python wherethedocareyou/wherethedocareyou.py
