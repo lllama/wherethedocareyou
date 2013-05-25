@@ -1,0 +1,27 @@
+#wrapper {
+    position: relative;
+    padding: 0;
+    outline: 1px solid #999;
+}
+
+#wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#buttonSweetheart {
+    width: 200px;
+}
