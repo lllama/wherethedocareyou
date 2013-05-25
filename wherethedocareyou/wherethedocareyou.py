@@ -20,7 +20,7 @@ def map():
     return flask.render_template("map.html")
 
 @app.route("/badger")
-def badger()
+def badger():
     print(str(flask.request.json))
 
 if __name__ == "__main__":
