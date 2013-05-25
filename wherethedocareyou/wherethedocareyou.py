@@ -27,7 +27,7 @@ def home():
 def map():
     return flask.render_template("map.html")
 
-@app.route("/badger")
+@app.route("/badger", methods=['POST'])
 def badger():
     print(str(flask.request.json))
     return ""
