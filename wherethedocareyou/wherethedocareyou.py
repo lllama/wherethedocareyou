@@ -30,6 +30,7 @@ def map():
 @app.route("/badger")
 def badger():
     print(str(flask.request.json))
+    return ""
 
 if __name__ == "__main__":
     PORT = int(os.getenv('PORT', 5000))
