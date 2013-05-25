@@ -22,4 +22,4 @@ def map():
 if __name__ == "__main__":
     PORT = int(os.getenv('PORT', 5000))
     app.debug = True
-    app.run(port=PORT)
+    app.run(host='0.0.0.0', port=PORT)
