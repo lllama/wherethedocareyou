@@ -19,6 +19,10 @@ def home():
 def map():
     return flask.render_template("map.html")
 
+@app.route("/badger")
+def badger()
+    print(str(flask.request.json))
+
 if __name__ == "__main__":
     PORT = int(os.getenv('PORT', 5000))
     app.debug = True
