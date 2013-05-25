@@ -7,9 +7,17 @@ import os
 
 app = flask.Flask(__name__)
 
+x = 10
+y = 10
+
 @app.route("/whereami")
 def coordinates():
-    return flask.jsonify({'x': 0, 'y': 0})
+    # Sick hackery...
+    import random
+    global x, y
+    x += random.randint(-1, 1)
+    y += random.randint(-1, 1)
+    return flask.jsonify({'x': x, 'y': y})
 
 @app.route("/")
 def home():
