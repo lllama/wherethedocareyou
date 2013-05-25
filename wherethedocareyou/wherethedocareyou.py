@@ -20,6 +20,6 @@ def map():
     return flask.render_template("map.html")
 
 if __name__ == "__main__":
-    PORT = os.getenv('PORT', 5000)
+    PORT = int(os.getenv('PORT', 5000))
     app.debug = True
     app.run(port=PORT)
