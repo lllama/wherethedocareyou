@@ -15,6 +15,7 @@ y = 430
 MONGO_URL = os.environ['MONGOHQ_URL']
 mongo_client = pymongo.MongoClient(MONGO_URL)
 db = mongo_client[urlparse(MONGO_URL).path[1:]]
+locations = db['locations']
 
 @app.route("/whereami")
 def whereami():
@@ -47,9 +48,38 @@ def badger():
 
 @app.route("/location/me/update", methods=['POST'])
 def update_location():
-    locations = db['locations']
-    locations.insert(flask.request.json)
+    # Because hacks, that's why!
+    me = flask.request.json
+    me['user'] = "me"
+    locations.insert(me)
+    maths() #I'm so sorry
     return ""
+
+def maths():
+    # I sicken me
+    me = locations.find_one({'user': 'me'})
+    if not me:
+        return
+
+    # What's that you say? Dumb+hacky n-dimensional nearest neighbour? Why yes!
+    distances = []
+    for map_datum in map_data.find():
+        map_datum_locations = map_datum['locations']
+        def f(bssid):
+            for map_ap in map_datum_locations:
+                if map_ap['BSSID'] == bssid:
+                    return map_ap
+        d = 0
+        for ap in me['locations']:
+            BSSID = ap['BSSID']
+            map_ap = f(BSSID)
+            d += abs(abs(ap['level']) - abs(map_ap['level']))
+        distances += {'map_datum': map_datum._id, 'distance': d}
+    print distances
+
+    #TODO Poke this when we have more data
+
+
 
 if __name__ == "__main__":
     PORT = int(os.getenv('PORT', 5000))
