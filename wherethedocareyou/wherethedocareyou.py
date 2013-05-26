@@ -80,10 +80,10 @@ def maths():
 
     sorted(distances, key=lambda x: x['distance'])
 
-    nearest_ap = distances[0]
-    nearest_BSSID = nearest_ap['BSSID']
+    nearest_map_datum_id = distances[0]
+    nearest_map_datum = map_data.find_one({'_id': nearest_map_datum_id})
 
-    print(nearest_BSSID)
+    print(nearest_map_datum)
 
     #TODO Poke this when we have more data
 
