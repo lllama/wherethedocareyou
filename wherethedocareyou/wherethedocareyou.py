@@ -34,7 +34,7 @@ def coordinates():
 
 @app.route("/")
 def home():
-    return ""
+    return flask.redirect("/map", 302)
 
 @app.route("/map")
 def map():
