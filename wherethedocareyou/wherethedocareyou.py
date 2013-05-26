@@ -75,7 +75,15 @@ def maths():
             map_ap = f(BSSID)
             d += abs(abs(ap['level']) - abs(map_ap['level']))
         distances += {'map_datum': map_datum._id, 'distance': d}
-    print distances
+
+    print(distances)
+
+    sorted(distances, key=lambda x: x['distance'])
+
+    nearest_ap = distances[0]
+    nearest_BSSID = nearest_ap['BSSID']
+
+    print(nearest_BSSID)
 
     #TODO Poke this when we have more data
 
