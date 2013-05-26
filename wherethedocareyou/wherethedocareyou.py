@@ -16,6 +16,7 @@ MONGO_URL = os.environ['MONGOHQ_URL']
 mongo_client = pymongo.MongoClient(MONGO_URL)
 db = mongo_client[urlparse(MONGO_URL).path[1:]]
 locations = db['locations']
+map_data = db['map_data']
 
 @app.route("/whereami")
 def whereami():
@@ -42,7 +43,6 @@ def map():
 def badger():
     # Because why would I name the function sensibly or provide useful output?
     print(str(flask.request.json))
-    map_data = db['map_data']
     map_data.insert(flask.request.json)
     return ""
 
