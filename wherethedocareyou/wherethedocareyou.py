@@ -16,6 +16,7 @@ MONGO_URL = os.environ['MONGOHQ_URL']
 mongo_client = pymongo.MongoClient(MONGO_URL)
 db = mongo_client[urlparse(MONGO_URL).path[1:]]
 locations = db['locations']
+places = db['places']
 map_data = db['map_data']
 
 @app.route("/whereami")
@@ -84,6 +85,11 @@ def maths():
     nearest_map_datum = map_data.find_one({'_id': nearest_map_datum_id})
 
     print(nearest_map_datum)
+
+    place_name = nearest_map_datum['Location']
+    me['place_name'] = place_name
+    me['coordinates'] = places.find_one({'name': place_name})['coordinates']
+    me.save()
 
     #TODO Poke this when we have more data
 
